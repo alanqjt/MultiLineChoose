@@ -45,38 +45,40 @@ public class MultiLineChooseLayout extends ViewGroup {
     private final int default_checked_text_color = Color.WHITE;
     
     /**
-     *默认的选中背景颜色
+     * 默认的选中背景颜色
      */
     private final int default_checked_background_color = Color.rgb(0x49, 0xC1, 0x20);
     
     /**
-     *默认的文字大小
+     * 默认的文字大小
      */
     private final float default_text_size;
     
     /**
-     *默认的水平间距
+     * 默认的水平间距
      */
     private final float default_horizontal_spacing;
     
     /**
-     *默认的竖直间距
+     * 默认的竖直间距
      */
     private final float default_vertical_spacing;
     
     /**
-     *默认的内部水平间距
+     * 默认的内部水平间距
      */
     private final float default_horizontal_padding;
     
     /**
-     *默认的内部竖直间距
+     * 默认的内部竖直间距
      */
     private final float default_vertical_padding;
     
     private int textColor;
     
     private int backgroundColor;
+    
+    private boolean item_click;
     
     private int selectedTextColor;
     
@@ -115,22 +117,19 @@ public class MultiLineChooseLayout extends ViewGroup {
         this(context, null);
     }
     
-    public MultiLineChooseLayout(Context context, AttributeSet attrs) {
-        this(context, attrs, R.attr.MultiLineChooseLayoutTagsStyle);
-    }
+    //    public MultiLineChooseLayout(Context context, AttributeSet attrs) {
+    //        this(context, attrs, R.attr.MultiLineChooseLayoutTagsStyle);
+    //    }
     
-    public MultiLineChooseLayout(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    public MultiLineChooseLayout(Context context, AttributeSet attrs/*, int defStyleAttr*/) {
+        super(context, attrs/*, defStyleAttr*/);
         default_text_size = sp2px(13.0f);
         default_horizontal_spacing = dp2px(8.0f);
         default_vertical_spacing = dp2px(4.0f);
         default_horizontal_padding = dp2px(0.0f);
         default_vertical_padding = dp2px(0.0f);
         
-        final TypedArray attrsArray = context.obtainStyledAttributes(attrs,
-                R.styleable.MultiLineChooseItemTags,
-                defStyleAttr,
-                R.style.MultiLineChooseItemTags);
+        final TypedArray attrsArray = context.obtainStyledAttributes(attrs, R.styleable.MultiLineChooseItemTags);
         try {
             textColor = attrsArray.getColor(R.styleable.MultiLineChooseItemTags_item_textColor, default_text_color);
             backgroundColor = attrsArray.getColor(R.styleable.MultiLineChooseItemTags_item_backgroundColor,
@@ -138,17 +137,21 @@ public class MultiLineChooseLayout extends ViewGroup {
             selectedTextColor = attrsArray.getColor(R.styleable.MultiLineChooseItemTags_item_selectedTextColor,
                     default_checked_text_color);
             selectedBackgroundColor = attrsArray.getColor(
-                    R.styleable.MultiLineChooseItemTags_item_selectedBackgroundColor, default_checked_background_color);
+                    R.styleable.MultiLineChooseItemTags_item_selectedBackgroundColor,
+                    default_checked_background_color);
             textSize = attrsArray.getDimension(R.styleable.MultiLineChooseItemTags_item_textSize, default_text_size);
             horizontalSpacing = (int) attrsArray.getDimension(
-                    R.styleable.MultiLineChooseItemTags_item_horizontalSpacing, default_horizontal_spacing);
+                    R.styleable.MultiLineChooseItemTags_item_horizontalSpacing,
+                    default_horizontal_spacing);
             verticalSpacing = (int) attrsArray.getDimension(R.styleable.MultiLineChooseItemTags_item_verticalSpacing,
                     default_vertical_spacing);
             horizontalPadding = (int) attrsArray.getDimension(
-                    R.styleable.MultiLineChooseItemTags_item_horizontalPadding, default_horizontal_padding);
+                    R.styleable.MultiLineChooseItemTags_item_horizontalPadding,
+                    default_horizontal_padding);
             verticalPadding = (int) attrsArray.getDimension(R.styleable.MultiLineChooseItemTags_item_verticalPadding,
                     default_vertical_padding);
             multiChooseable = attrsArray.getBoolean(R.styleable.MultiLineChooseItemTags_item_multiChooseable, true);
+            item_click = attrsArray.getBoolean(R.styleable.MultiLineChooseItemTags_item_click, true);
             singleLine = attrsArray.getBoolean(R.styleable.MultiLineChooseItemTags_item_singleLine, false);
             itemWidth = attrsArray.getInt(R.styleable.MultiLineChooseItemTags_item_width,
                     MultiLineChooseLayout.LayoutParams.WRAP_CONTENT);
@@ -333,6 +336,7 @@ public class MultiLineChooseLayout extends ViewGroup {
     
     /**
      * 设置数据源
+     *
      * @param tags
      */
     public void setList(String... tags) {
@@ -345,6 +349,7 @@ public class MultiLineChooseLayout extends ViewGroup {
     
     /**
      * 设置默认的位置上选中
+     *
      * @param position
      * @return
      */
@@ -364,7 +369,30 @@ public class MultiLineChooseLayout extends ViewGroup {
     }
     
     /**
+     * 设置选中
+     * @param positionList
+     * @return
+     */
+    public void setIndexListItemSelected(List<Integer> positionList) {
+        
+        if (positionList == null || positionList.isEmpty() || positionList.size() == 0)
+            return;
+        
+        final int count = getChildCount();
+        if (positionList.size() > count) {
+            return;
+        }
+        
+        for (int i = 0; i < positionList.size(); i++) {
+            ItemView tagView = getIndexItem(i);
+            tagView.setItemSelected(true);
+        }
+        
+    }
+    
+    /**
      * 返回指定的item
+     *
      * @param index
      * @return
      */
@@ -374,6 +402,7 @@ public class MultiLineChooseLayout extends ViewGroup {
     
     /**
      * 返回选中的item
+     *
      * @return
      */
     protected ItemView getSelectedItem() {
@@ -386,6 +415,7 @@ public class MultiLineChooseLayout extends ViewGroup {
     
     /**
      * 获取选中的item文字内容
+     *
      * @return
      */
     protected String getSelectedItemText() {
@@ -397,6 +427,7 @@ public class MultiLineChooseLayout extends ViewGroup {
     
     /**
      * 返回所有选中的tag的文字
+     *
      * @return String
      */
     public String[] getAllItemSelectedTextWithStringArray() {
@@ -414,6 +445,7 @@ public class MultiLineChooseLayout extends ViewGroup {
     
     /**
      * 返回所有选中的tag的文字
+     *
      * @return ListArray
      */
     public ArrayList<String> getAllItemSelectedTextWithListArray() {
@@ -431,6 +463,7 @@ public class MultiLineChooseLayout extends ViewGroup {
     
     /**
      * 返回选中的item下标
+     *
      * @return
      */
     public int getSelectedIndex() {
@@ -443,9 +476,11 @@ public class MultiLineChooseLayout extends ViewGroup {
         }
         return -1;
     }
-    
+
+
     /**
      * 返回所有选中的item的下标列表集合
+     *
      * @return ArrayList
      */
     public ArrayList<Integer> getAllItemSelectedIndex() {
@@ -462,6 +497,45 @@ public class MultiLineChooseLayout extends ViewGroup {
     }
     
     /**
+     * 如果某个选中的话，取消选中
+     * @param position
+     */
+    public void cancelSelectedIndex(int position) {
+        ItemView tag = getIndexItem(position);
+        if (null != tag && tag.isChecked) {
+            tag.setItemSelected(false);
+        }
+    }
+    
+    /**
+     * 根据某个tag判断是否被选中
+     * @param text
+     * @return 返回选中的下标
+     */
+    public int isSelected(String text) {
+        int flag = -1;
+        List<String> mSelectedAll = getAllItemSelectedTextWithListArray();
+        if (mSelectedAll != null && mSelectedAll.contains(text)) {
+            flag = mSelectedAll.indexOf(text);
+        }
+        return flag;
+    }
+    
+    /**
+     * 判断某个位置下面是否被选中
+     * @param poisition
+     * @return 返回选中的下标
+     */
+    public boolean isSelected(int poisition) {
+        boolean flag = false;
+        ItemView tag = getIndexItem(poisition);
+        if (null != tag && tag.isChecked) {
+            flag = true;
+        }
+        return flag;
+    }
+    
+    /**
      * 取消选中状态
      */
     public void cancelAllSelectedItems() {
@@ -475,7 +549,22 @@ public class MultiLineChooseLayout extends ViewGroup {
     }
     
     /**
+     * 只展示，不做事件响应
+     */
+    public void onlyShow() {
+        final int count = getChildCount();
+        for (int i = 0; i < count; i++) {
+            ItemView tag = getIndexItem(i);
+            if (null != tag && tag.isChecked) {
+                tag.setItemSelected(false);
+            }
+            tag.setClickable(false);
+        }
+    }
+    
+    /**
      * 增加item
+     *
      * @param tag
      */
     private void addItem(CharSequence tag) {
@@ -560,27 +649,40 @@ public class MultiLineChooseLayout extends ViewGroup {
     class ItemClicker implements OnClickListener {
         @Override
         public void onClick(View v) {
-            final ItemView tag = (ItemView) v;
-            int position = -1;
-            final ItemView checkedTag = getSelectedItem();
-            if (!multiChooseable) {
-                //单选
-                if (checkedTag != null) {
-                    checkedTag.setItemSelected(false);
+            
+            //如果可以点击的话
+            if (item_click) {
+                final ItemView tag = (ItemView) v;
+                int position = -1;
+                final ItemView checkedTag = getSelectedItem();
+                if (!multiChooseable) {
+                    //单选
+                    if (checkedTag != null) {
+                        checkedTag.setItemSelected(false);
+                    }
+                    
+                    tag.setItemSelected(true);
+                    position = getSelectedIndex();
+                }
+                else {
+                    //多选
+                    tag.setItemSelected(!tag.isChecked);
+                    
+                    //寻找最后一次点击的index
+                    final int count = getChildCount();
+                    for (int i = 0; i < count; i++) {
+                        final ItemView tagPre = getIndexItem(i);
+                        if (tagPre == tag) {
+                            position = i;
+                            break;
+                        }
+                    }
                 }
                 
-                tag.setItemSelected(true);
-                position = getSelectedIndex();
-            }
-            else {
-                //多选
-                tag.setItemSelected(!tag.isChecked);
-                position = -1;
-            }
-            
-            //外部点击事件
-            if (mOnItemClickLisener != null) {
-                mOnItemClickLisener.onItemClick(position, tag.getText().toString());
+                //外部点击事件
+                if (mOnItemClickLisener != null) {
+                    mOnItemClickLisener.onItemClick(position, tag.getText().toString());
+                }
             }
             
         }

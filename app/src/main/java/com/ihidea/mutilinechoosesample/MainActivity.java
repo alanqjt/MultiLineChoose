@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ihidea.multilinechooselib.MultiLineChooseLayout;
 
@@ -14,7 +13,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     
-    private List<String> mDataList = new ArrayList<>();
+    private List<String> mColorData = new ArrayList<>();
+    
+    private List<String> mEquipData = new ArrayList<>();
+    
+    private List<String> mLikeData = new ArrayList<>();
     
     private MultiLineChooseLayout singleChoose;
     
@@ -75,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < multiChooseResult.size(); i++) {
                         textSelect += multiChooseResult.get(i) + " , ";
                     }
-                    multiChooseTv.setText("结果：" + textSelect);
+                    multiChooseTv.setText("结果：" + position);
                 }
             }
         });
@@ -99,18 +102,33 @@ public class MainActivity extends AppCompatActivity {
     
     private void initData() {
         
-        mDataList.add("尽管她看");
-        mDataList.add("尽管");
-        mDataList.add("很热情");
-        mDataList.add("我却从她");
-        mDataList.add("看出了");
-        mDataList.add("强作");
-        mDataList.add("欢颜");
-        mDataList.add("欢颜");
-        mDataList.add("味道");
-        singleChoose.setList(mDataList);
-        multiChoose.setList(mDataList);
-        flowLayout.setList(mDataList);
+        mColorData.add("红色");
+        mColorData.add("橙色");
+        mColorData.add("黄色");
+        mColorData.add("绿色");
+        mColorData.add("蓝色");
+        mColorData.add("灰色");
+        mColorData.add("紫色");
+        singleChoose.setList(mColorData);
+        
+        mEquipData.add("电脑");
+        mEquipData.add("手机");
+        mEquipData.add("钥匙");
+        mEquipData.add("毛笔");
+        mEquipData.add("足球");
+        mEquipData.add("雨伞");
+        mEquipData.add("电视");
+        mEquipData.add("天气");
+        
+        multiChoose.setList(mEquipData);
+        
+        mLikeData.add("国内新闻");
+        mLikeData.add("今日头条");
+        mLikeData.add("视频");
+        mLikeData.add("文字");
+        mLikeData.add("图片");
+        mLikeData.add("语音");
+        flowLayout.setList(mLikeData);
         
     }
 }
