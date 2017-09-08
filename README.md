@@ -1,7 +1,5 @@
 ### Android流式布局实现多行Checkbox功能
 
-**欢迎star、fork **  [https://github.com/crazyandcoder/MultiLineChoose](https://github.com/crazyandcoder/MultiLineChoose)
-
 在我们开发过程中，我们有的时候会碰到这么一种需求，就是需要单选，但是呢？得多行显示要选的内容item，常规做法使用RadioGroup加上RadioButton来实现，但是前提是我们知道所要选择的item个数，如果碰到这么一种情况，所给出的item数量不确定，也就是从后台服务器中获取，有多少显示多少？这就有点郁闷了，没关系，今天我们来提供一种新的实现方式，那就是流式布局来实现类似功能。
 
 ### 特点
@@ -39,6 +37,10 @@ compile 'liji.library.dev:multilinechooselib:1.6.0'
 ```
 
 ### 更新说明
+
+####  V2.0.0版本更新内容（2017.09.08）
+1. 新增属性方法
+
 
 ####  V1.6.0版本更新内容（2017.07.28）
 1. 增加item是否可以点击属性
@@ -191,7 +193,7 @@ public void setOnItemClickListener(onItemClickListener l);
  }
 ```
  
-**more 。。。**
+
 
 
 ----------
