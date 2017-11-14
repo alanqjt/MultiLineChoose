@@ -102,7 +102,6 @@ public class MultiLineChooseLayout extends ViewGroup {
     
     private boolean animUpdateDrawable = false;
     
-    //textview的属性
     private float mRadius[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
     
     private ColorStateList mStrokeColor, mCheckedStrokeColor;
@@ -348,22 +347,47 @@ public class MultiLineChooseLayout extends ViewGroup {
     }
     
     /**
+     * 更新某个item的内容
+     * @param txt
+     * @param position
+     */
+    public void setIndexItemText(int position, String txt) {
+        
+        int index = -1;
+        final int count = getChildCount();
+        if (position >= count) {
+            return;
+        }
+        ItemView tagView = getIndexItem(position);
+        tagView.setText(txt);
+    }
+    
+    /**
      * 设置默认的位置上选中
      *
      * @param position
      * @return
      */
     public int setIndexItemSelected(int position) {
+        return setIndexItemSelected(position, true);
+    }
+    
+    /**
+     * 设置选中状态
+     *
+     * @param position
+     * @return
+     */
+    public int setIndexItemSelected(int position, boolean flag) {
         
         int index = -1;
         final int count = getChildCount();
         if (position >= count) {
-            
             return -1;
         }
         
         ItemView tagView = getIndexItem(position);
-        tagView.setItemSelected(true);
+        tagView.setItemSelected(flag);
         index = position;
         return index;
     }
@@ -476,8 +500,7 @@ public class MultiLineChooseLayout extends ViewGroup {
         }
         return -1;
     }
-
-
+    
     /**
      * 返回所有选中的item的下标列表集合
      *

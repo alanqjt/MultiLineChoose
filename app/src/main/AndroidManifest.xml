@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.ihidea.mutilinechoosesample"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.ihidea.mutilinechoosesample">
 
     <application
         android:allowBackup="true"
@@ -14,6 +14,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".ShowActivity">
+        </activity>
+        <activity android:name=".SameItemActivity">
+        </activity>
+        <activity android:name=".FlowActivity">
         </activity>
     </application>
 
