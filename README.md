@@ -21,7 +21,7 @@
 **gradle引用**
 
 ```
-compile 'liji.library.dev:multilinechooselib:1.6.0'
+compile 'liji.library.dev:multilinechooselib:2.0.3'
 ```
 
 
@@ -40,6 +40,11 @@ compile 'liji.library.dev:multilinechooselib:1.6.0'
 ```
 
 ### 更新说明
+
+
+####  V2.0.3版本更新内容（2019.01.15）
+1. 新增全部选中的属性方法
+
 
 ####  V2.0.0版本更新内容（2017.09.08）
 1. 新增属性方法
@@ -179,13 +184,19 @@ public ArrayList<Integer> getAllItemSelectedIndex()
 
  
 
-**6、取消所有选中项**
+**6、设置全部选中**
+
+```
+public void setAllSelected() 
+``` 
+
+**7、取消所有选中项**
 
 ```
 public void cancelAllSelectedItems() 
 ```
 
-**7、设置item点击事件**
+**8、设置item点击事件**
 
 ```
 public void setOnItemClickListener(onItemClickListener l);
