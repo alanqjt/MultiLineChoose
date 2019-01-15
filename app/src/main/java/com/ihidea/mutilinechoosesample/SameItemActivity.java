@@ -1,7 +1,7 @@
 package com.ihidea.mutilinechoosesample;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,7 +11,7 @@ import com.ihidea.multilinechooselib.MultiLineChooseLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SameItemActivity extends AppCompatActivity {
+public class SameItemActivity extends Activity {
     
     private List<String> mEquipData = new ArrayList<>();
     
@@ -20,7 +20,8 @@ public class SameItemActivity extends AppCompatActivity {
     private TextView multiChooseTv;
     
     private Button button;
-    
+    private Button button1;
+
     List<String> multiChooseResult = new ArrayList<>();
     
     @Override
@@ -34,10 +35,18 @@ public class SameItemActivity extends AppCompatActivity {
         
         initData();
         button = (Button) findViewById(R.id.button);
+        button1 = (Button) findViewById(R.id.button1);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 multiChoose.cancelAllSelectedItems();
+            }
+        });
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                multiChoose.setAllSelected();
             }
         });
         

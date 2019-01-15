@@ -1,7 +1,7 @@
 package com.ihidea.mutilinechoosesample;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,7 +11,7 @@ import com.ihidea.multilinechooselib.MultiLineChooseLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowActivity extends AppCompatActivity {
+public class ShowActivity extends Activity {
     private List<String> mColorData = new ArrayList<>();
     
     private MultiLineChooseLayout singleChoose;

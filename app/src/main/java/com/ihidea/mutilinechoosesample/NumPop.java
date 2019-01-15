@@ -39,12 +39,12 @@ public class NumPop implements CanShow {
         this.mContext = context;
 
         LayoutInflater flater = LayoutInflater.from(this.mContext);
-        popview = flater.inflate(com.ihidea.multilinechooselib.R.layout.pop_num, null);
+        popview = flater.inflate(R.layout.pop_num, null);
 
-        mTitleAlertTv = (TextView) popview.findViewById(com.ihidea.multilinechooselib.R.id.title_alert_tv);
-        mContentTv = (EditText) popview.findViewById(com.ihidea.multilinechooselib.R.id.content_log_tv);
-        mLeftBtn = (TextView) popview.findViewById(com.ihidea.multilinechooselib.R.id.leftBtn);
-        mRightBtn = (TextView) popview.findViewById(com.ihidea.multilinechooselib.R.id.rightBtn);
+        mTitleAlertTv = (TextView) popview.findViewById(R.id.title_alert_tv);
+        mContentTv = (EditText) popview.findViewById(R.id.content_log_tv);
+        mLeftBtn = (TextView) popview.findViewById(R.id.leftBtn);
+        mRightBtn = (TextView) popview.findViewById(R.id.rightBtn);
         
         mLeftBtn.setOnClickListener(new OnClickListener() {
             @Override
