@@ -6,7 +6,7 @@ apply plugin: 'com.jfrog.bintray'
 
 
 //你的library版本号,+0.1为大改动，即添加新功能，+0.01的话就是小改动，修改每个utils中功能
-version = "2.0.2"
+version = "2.0.3"
 
 android {
     compileSdkVersion 24
