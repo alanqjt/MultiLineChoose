@@ -25,113 +25,40 @@ compile 'liji.library.dev:multilinechooselib:2.0.3'
 ```
 
 
-### 使用方法 
 
->  代码清单 activity_main.xml
+### 最近更新说明
+[全部更新说明](https://github.com/crazyandcoder/MultiLineChoose/wiki/%E6%9B%B4%E6%96%B0%E8%AF%B4%E6%98%8E)
+####  V2.0.3版本更新内容（2019.01.15）
+1. 新增全部选中的属性方法
+
+
+
+**自定义属性**
+[自定义属性大全](https://github.com/crazyandcoder/MultiLineChoose/wiki/%E5%B1%9E%E6%80%A7%E6%A0%B7%E5%BC%8F%E5%A4%A7%E5%85%A8)
+
+**使用方法**
 
 ```
-            <com.ihidea.multilinechooselib.MultiLineChooseLayout
+//属性设置，其中style="@style/FlowLayout"请见上面的自定义属性大全
+<com.ihidea.multilinechooselib.MultiLineChooseLayout
                 android:id="@+id/flowLayout"
                 style="@style/FlowLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
-            </com.ihidea.multilinechooselib.MultiLineChooseLayout>
-```
+</com.ihidea.multilinechooselib.MultiLineChooseLayout>
 
-### 更新说明
-
-
-####  V2.0.3版本更新内容（2019.01.15）
-1. 新增全部选中的属性方法
-
-
-####  V2.0.0版本更新内容（2017.09.08）
-1. 新增属性方法
-
-
-####  V1.6.0版本更新内容（2017.07.28）
-1. 增加item是否可以点击属性
-
-```
-
-<!--是否可以点击-->
-<attr name="item_click" format="boolean"/>
-```
-
->代码清单  style.xml 自定义属性设置
-
-**自定义属性**
-```
-<style name="FlowLayout">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">5dp</item>
-        
-        //选项item文字默认值
-        <item name="item_textColor">#666666</item>
-
-		//选项item背景色
-        <item name="item_backgroundColor">#ffffff</item>
-
-		//选中后选项item的文字颜色
-        <item name="item_selectedTextColor">#ffffff</item>
-
-		//选中后选项item的背景颜色
-        <item name="item_selectedBackgroundColor">#7289ff</item>
-
-		//选项item的圆角大小
-        <item name="item_radius">0dp</item>
-	
-		//选项item的边缘颜色
-        <item name="item_strokeColor">#939393</item>
-
-		//选项item选中后边缘颜色
-        <item name="item_selectedStrokeColor">#939393</item>
-
-		//选项item边缘的大小
-        <item name="item_strokeWidth">1px</item>
-
-		//水平方向，选项item的间距
-        <item name="item_horizontalSpacing">10dp</item>
-        
-        //选项item内部padding
-        <item name="item_horizontalPadding">10dp</item>
-
-		////竖直方向，选项item的间距
-        <item name="item_verticalPadding">5dp</item>
-        
-        //选项item的大小，如果设置wrap_content则包裹它的内容，可设置固定值如80，单位dp
-        <item name="item_width">wrap_content</item>
-        <item name="item_height">wrap_content</item>
-
-
-        //限制item文字显示长度
-        <item name="item_maxEms">5</item>
-        
-        //是否可以多选
-        <item name="item_multiChooseable">true</item>
-    </style>
-
-```
-
-**使用方法**
-
-```
+//设置数据源
 private List<String> mColorData = new ArrayList<>();
 private MultiLineChooseLayout singleChoose;
-singleChoose = (MultiLineChooseLayout) findViewById(R.id.singleChoose);
-
-		
-		mColorData.add("红色");
+singleChoose = (MultiLineChooseLayout) findViewById(R.id.singleChoose);	
+	mColorData.add("红色");
         mColorData.add("橙色");
         mColorData.add("黄色");
         mColorData.add("绿色");
         mColorData.add("蓝色");
         mColorData.add("灰色");
-        mColorData.add("紫色");
-        
-//设置数据源
+        mColorData.add("紫色");     
 singleChoose.setList(mColorData);
 
 //单选
@@ -144,77 +71,14 @@ singleChoose.setOnItemClickListener(new MultiLineChooseLayout.onItemClickListene
 
 //取消选中项
 singleChoose.cancelAllSelectedItems();
- 
-        
+         
 ``` 
 **如果要设置多选，请在style中设置item_multiChooseable=true**
 **如果要设置流式布局，则将item的宽和高都设置为wrap_content**
 
 ### 常用方法介绍
-
-**1、设置数据源**
-```
-public void setList(List<String> tagList);
-```
-
-
-**2、设置默认的选中项**
-
-```
-public int setIndexItemSelected(int position)
-```
-
-**3、获取选中的item内容**
-```
-protected String getSelectedItemText()
-```
-
-**4、多选情况下，返回所有选中的item内容**
-
-```
-public String[] getAllItemSelectedTextWithStringArray()
-```
-
-
-**5、多选情况下，返回所有选中项的下标**
-
-```
-public ArrayList<Integer> getAllItemSelectedIndex()
-```
+[常用方法介绍](https://github.com/crazyandcoder/MultiLineChoose/wiki/%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)
 
  
 
-**6、设置全部选中**
 
-```
-public void setAllSelected() 
-``` 
-
-**7、取消所有选中项**
-
-```
-public void cancelAllSelectedItems() 
-```
-
-**8、设置item点击事件**
-
-```
-public void setOnItemClickListener(onItemClickListener l);
-
-//点击事件，返回点击的position和选中项
- public interface onItemClickListener {
-        void onItemClick(int position, String text);
- }
-```
- 
-
-
-
-----------
-
-
-**关于作者**
-
- 1. QQ： 275137657
- 2. github： https://github.com/crazyandcoder
- 3. 个人博客：http://crazyandcoder.github.io/
